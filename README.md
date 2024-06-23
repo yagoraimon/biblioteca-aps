@@ -82,25 +82,11 @@ Preencha os campos de busca e clique em "Consultar".
 Navegue para "Relatórios".
 Visualize os registros de empréstimos e devoluções.
 
-## Estrutura do Projeto
-
-biblioteca/
-├── app.py
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── cadastro_livro.html
-│   ├── cadastro_autor.html
-│   ├── cadastro_editora.html
-│   ├── cadastro_usuario.html
-│   ├── emprestimo.html
-│   ├── devolucao.html
-│   ├── consulta.html
-│   ├── relatorios.html
-├── static/
-│   ├── css/
-│       ├── style.css
-├── models.py
-├── requirements.txt
 
 ### Clone o Repositório
+```bash
+git clone https://github.com/yagoraimon/biblioteca-aps.git
+```
+
+## Licença
+MIT

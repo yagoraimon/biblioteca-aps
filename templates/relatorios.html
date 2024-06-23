@@ -16,8 +16,8 @@
         <tr>
             <td>{{ emprestimo.usuario.nome }}</td>
             <td>{{ emprestimo.livro.titulo }}</td>
-            <td>{{ emprestimo.data_emprestimo }}</td>
-            <td>{{ emprestimo.data_devolucao }}</td>
+            <td>{{ emprestimo.data_emprestimo.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+            <td>{% if emprestimo.data_devolucao %}{{ emprestimo.data_devolucao.strftime('%d/%m/%Y %H:%M:%S') }}{% else %}Ainda não devolvido{% endif %}</td>
         </tr>
         {% endfor %}
     </tbody>

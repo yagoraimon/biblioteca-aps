@@ -11,6 +11,9 @@ class Livro(db.Model):
     ano_publicacao = db.Column(db.Integer, nullable=False)
     status = db.Column(db.String(10), nullable=False)
 
+    autor = db.relationship('Autor', backref=db.backref('livros', lazy=True))
+    editora = db.relationship('Editora', backref=db.backref('livros', lazy=True))
+
 class Autor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nome = db.Column(db.String(100), nullable=False)
@@ -46,3 +49,6 @@ class Emprestimo(db.Model):
     livro_id = db.Column(db.Integer, db.ForeignKey('livro.id'), nullable=False)
     data_emprestimo = db.Column(db.DateTime, nullable=False)
     data_devolucao = db.Column(db.DateTime, nullable=True)
+
+    usuario = db.relationship('Usuario', backref=db.backref('emprestimos', lazy=True))
+    livro = db.relationship('Livro', backref=db.backref('emprestimos', lazy=True))

@@ -5,22 +5,32 @@
 <form method="post">
     <input type="hidden" name="livro_id" value="{{ livro.id if livro else '' }}">
     <label for="titulo">Título:</label>
-    <input type="text" id="titulo" name="titulo" value="{{ livro.titulo if livro else '' }}" required><br>
+    <input type="text" id="titulo" name="titulo" value="{{ livro.titulo if livro else '' }}" required>
+    <br>
     <label for="autor">Autor:</label>
-    <select id="autor" name="autor_id">
+    <select id="autor" name="autor_id" required>
         {% for autor in autores %}
         <option value="{{ autor.id }}" {% if livro and livro.autor_id == autor.id %}selected{% endif %}>{{ autor.nome }}</option>
         {% endfor %}
-    </select><br>
+    </select>
+    <br>
     <label for="editora">Editora:</label>
-    <select id="editora" name="editora_id">
+    <select id="editora" name="editora_id" required>
         {% for editora in editoras %}
         <option value="{{ editora.id }}" {% if livro and livro.editora_id == editora.id %}selected{% endif %}>{{ editora.nome }}</option>
         {% endfor %}
-    </select><br>
+    </select>
+    <br>
     <label for="ano_publicacao">Ano de Publicação:</label>
-    <input type="number" id="ano_publicacao" name="ano_publicacao" value="{{ livro.ano_publicacao if livro else '' }}" required><br>
-    <button type="submit">{{ 'Atualizar' if livro else 'Cadastrar' }} Livro</button>
+    <input type="number" id="ano_publicacao" name="ano_publicacao" value="{{ livro.ano_publicacao if livro else '' }}" required>
+    <br>
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+        <option value="disponível" {% if livro and livro.status == 'disponível' %}selected{% endif %}>Disponível</option>
+        <option value="emprestado" {% if livro and livro.status == 'emprestado' %}selected{% endif %}>Emprestado</option>
+    </select>
+    <br>
+    <button type="submit">Salvar</button>
 </form>
 
 <h2>Livros Cadastrados</h2>
@@ -31,6 +41,7 @@
             <th>Autor</th>
             <th>Editora</th>
             <th>Ano de Publicação</th>
+            <th>Status</th>
             <th>Ações</th>
         </tr>
     </thead>
@@ -41,9 +52,10 @@
             <td>{{ livro.autor.nome }}</td>
             <td>{{ livro.editora.nome }}</td>
             <td>{{ livro.ano_publicacao }}</td>
+            <td>{{ livro.status }}</td>
             <td>
                 <a href="{{ url_for('cadastro_livro', edit=livro.id) }}">Editar</a>
-                <a href="{{ url_for('cadastro_livro', delete=livro.id) }}" onclick="return confirm('Tem certeza que deseja excluir este livro?')">Excluir</a>
+                <a href="{{ url_for('cadastro_livro', delete=livro.id) }}">Excluir</a>
             </td>
         </tr>
         {% endfor %}

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session
 from models import db, Livro, Autor, Editora, Usuario, Emprestimo
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime
+from datetime import datetime, date
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///biblioteca.db'
@@ -217,7 +217,7 @@ def consulta():
     livros = query.all()
     return render_template('consulta.html', livros=livros)
 
-@app.route('/relatorios', methods=['GET'])
+@app.route('/relatorios')
 def relatorios():
     emprestimos = Emprestimo.query.all()
     return render_template('relatorios.html', emprestimos=emprestimos)

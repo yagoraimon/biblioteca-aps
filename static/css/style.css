@@ -85,3 +85,9 @@ th {
     background-color: #333;
     color: #fff;
 }
+
+footer {
+    font-size: 13px;
+    display: grid;
+    place-content: center;
+}
