@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Devolução de Livros</h2>
+<form method="post">
+    <label for="usuario">Usuário:</label>
+    <select id="usuario" name="usuario_id">
+        {% for usuario in usuarios %}
+        <option value="{{ usuario.id }}">{{ usuario.nome }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="livro">Livro:</label>
+    <select id="livro" name="livro_id">
+        {% for livro in livros %}
+        <option value="{{ livro.id }}">{{ livro.titulo }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Registrar Devolução</button>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Relatórios de Empréstimos e Devoluções</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Livro</th>
+            <th>Data de Empréstimo</th>
+            <th>Data de Devolução</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for emprestimo in emprestimos %}
+        <tr>
+            <td>{{ emprestimo.usuario.nome }}</td>
+            <td>{{ emprestimo.livro.titulo }}</td>
+            <td>{{ emprestimo.data_emprestimo }}</td>
+            <td>{{ emprestimo.data_devolucao }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

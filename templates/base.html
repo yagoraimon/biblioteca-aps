@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Gerenciamento de Biblioteca</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('cadastro_livro') }}">Cadastro de Livros</a></li>
+                <li><a href="{{ url_for('cadastro_autor') }}">Cadastro de Autores</a></li>
+                <li><a href="{{ url_for('cadastro_editora') }}">Cadastro de Editoras</a></li>
+                <li><a href="{{ url_for('emprestimo') }}">Empréstimos</a></li>
+                <li><a href="{{ url_for('devolucao') }}">Devoluções</a></li>
+                <li><a href="{{ url_for('consulta') }}">Consulta</a></li>
+                <li><a href="{{ url_for('relatorios') }}">Relatórios</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Biblioteca. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

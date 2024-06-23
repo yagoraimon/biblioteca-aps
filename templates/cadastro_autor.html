@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Cadastro de Autores</h2>
+<form method="post">
+    <input type="hidden" name="autor_id" value="{{ autor.id if autor else '' }}">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" value="{{ autor.nome if autor else '' }}" required><br>
+    <label for="nacionalidade">Nacionalidade:</label>
+    <input type="text" id="nacionalidade" name="nacionalidade" value="{{ autor.nacionalidade if autor else '' }}" required><br>
+    <label for="data_nascimento">Data de Nascimento:</label>
+    <input type="date" id="data_nascimento" name="data_nascimento" value="{{ autor.data_nascimento if autor else '' }}" required><br>
+    <button type="submit">{{ 'Atualizar' if autor else 'Cadastrar' }} Autor</button>
+</form>
+
+<h2>Autores Cadastrados</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Nacionalidade</th>
+            <th>Data de Nascimento</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <td>{{ autor.nome }}</td>
+            <td>{{ autor.nacionalidade }}</td>
+            <td>{{ autor.data_nascimento }}</td>
+            <td>
+                <a href="{{ url_for('cadastro_autor', edit=autor.id) }}">Editar</a>
+                <a href="{{ url_for('cadastro_autor', delete=autor.id) }}" onclick="return confirm('Tem certeza que deseja excluir este autor?')">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

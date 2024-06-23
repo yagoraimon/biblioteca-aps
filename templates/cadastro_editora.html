@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Cadastro de Editoras</h2>
+<form method="post">
+    <input type="hidden" name="editora_id" value="{{ editora.id if editora else '' }}">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" value="{{ editora.nome if editora else '' }}" required><br>
+    <label for="endereco">Endereço:</label>
+    <input type="text" id="endereco" name="endereco" value="{{ editora.endereco if editora else '' }}" required><br>
+    <label for="telefone">Telefone:</label>
+    <input type="text" id="telefone" name="telefone" value="{{ editora.telefone if editora else '' }}" required><br>
+    <button type="submit">{{ 'Atualizar' if editora else 'Cadastrar' }} Editora</button>
+</form>
+
+<h2>Editoras Cadastradas</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Endereço</th>
+            <th>Telefone</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for editora in editoras %}
+        <tr>
+            <td>{{ editora.nome }}</td>
+            <td>{{ editora.endereco }}</td>
+            <td>{{ editora.telefone }}</td>
+            <td>
+                <a href="{{ url_for('cadastro_editora', edit=editora.id) }}">Editar</a>
+                <a href="{{ url_for('cadastro_editora', delete=editora.id) }}" onclick="return confirm('Tem certeza que deseja excluir esta editora?')">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
